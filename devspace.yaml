@@ -33,6 +33,7 @@ deployments:
         ingress:
           tls: true
           rules:
+            - host: trilium.aknapen.nl
             - host: trilium.devspace.host
         volumes:
           - name: trilium-data
