@@ -1,0 +1,39 @@
+version: v1beta9
+images:
+  app:
+    image: zadam/trilium
+    tags:
+      - latest
+    createPullSecret: true
+    build:
+      disabled: true
+deployments:
+  - name: trilium-devspace
+    helm:
+      componentChart: true
+      values:
+        containers:
+          - image: zadam/trilium
+            volumeMounts:
+              - containerPath: /root/trilium-data
+                volume:
+                  name: trilium-data
+                  subPath: /trilium-data
+                  readOnly: false
+        service:
+          ports:
+            - port: 8080
+        ingress:
+          tls: true
+          rules:
+            - host: trilium.devspace.host
+        volumes:
+          - name: trilium-data
+            size: "5Gi"
+dev:
+  ports:
+    - imageName: app
+      forward:
+        - port: 8080
+  open:
+    - url: http://localhost:8080
