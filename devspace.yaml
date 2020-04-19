@@ -32,6 +32,8 @@ deployments:
             - port: 8080
         ingress:
           tls: true
+          annotations:
+            nginx.ingress.kubernetes.io/ssl-redirect: "true"
           rules:
             - host: trilium.aknapen.nl
             - host: trilium.devspace.host
