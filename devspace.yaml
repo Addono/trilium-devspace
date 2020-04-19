@@ -20,6 +20,13 @@ deployments:
                   name: trilium-data
                   subPath: /trilium-data
                   readOnly: false
+            livenessProbe:
+              httpGet:
+                path: /login
+                port: 8080
+              initialDelaySeconds: 5
+              periodSeconds: 2
+              failureThreshold: 10
         service:
           ports:
             - port: 8080
