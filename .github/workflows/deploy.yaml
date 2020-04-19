@@ -1,0 +1,29 @@
+name: Deploy the application
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 13
+
+    - name: Install DevSpace
+      run: npm install -g devspace
+
+    - name: Login to DevSpace
+      run: devspace login --key=${{ secrets.DEVSPACE_CLOUD_KEY }}
+
+    - name: Point DevSpace to the production context
+      run: devspace use space ${{ secrets.DEVSPACE_CLOUD_SPACE_NAME}}
+
+    - name: Deploy
+      run: devspace deploy
