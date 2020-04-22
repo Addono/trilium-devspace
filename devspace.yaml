@@ -1,12 +1,4 @@
 version: v1beta9
-images:
-  app:
-    image: zadam/trilium
-    tags:
-      - latest
-    createPullSecret: true
-    build:
-      disabled: true
 deployments:
   - name: trilium-devspace
     helm:
