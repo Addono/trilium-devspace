@@ -32,10 +32,3 @@ deployments:
         volumes:
           - name: trilium-data
             size: "5Gi"
-dev:
-  ports:
-    - imageName: app
-      forward:
-        - port: 8080
-  open:
-    - url: http://localhost:8080
