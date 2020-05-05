@@ -27,8 +27,10 @@ deployments:
           annotations:
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
           rules:
-            - host: trilium.aknapen.nl
-            - host: trilium.devspace.host
+            - host: ${INGRESS_HOST}
         volumes:
           - name: trilium-data
             size: "5Gi"
+vars:
+- name: INGRESS_HOST
+  question: "Which domain do you want to use to expose Trilium to the public?"
