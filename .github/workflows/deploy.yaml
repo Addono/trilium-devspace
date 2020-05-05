@@ -27,3 +27,5 @@ jobs:
 
     - name: Deploy
       run: devspace deploy
+      env:
+        INGRESS_HOST: ${{ secrets.INGRESS_HOST }}
